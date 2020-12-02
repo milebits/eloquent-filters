@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Filters;
+
+use Illuminate\Database\Eloquent\Builder;
+use Milebits\Eloquent\Filters\Filters\ModelFilter;
+
+/**
+ * Class {{FilterName}}
+ * @package App\Filters
+ */
+class {{FilterName}} extends ModelFilter
+{
+    /**
+     * The filter to apply to the model builder from the pipeline
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function apply(Builder $builder): Builder
+    {
+        return $builder->where($this->key(), '=', $this->keyValue());
+    }
+}

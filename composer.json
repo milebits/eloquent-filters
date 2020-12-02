@@ -1,0 +1,56 @@
+{
+  "name": "milebits/eloquent-filters",
+  "description": "A Laravel PHP library that allows the user to filter the result of Eloquent Model query builders.",
+  "type": "library",
+  "require": {
+    "laravel/framework": "5.*|6.*|7.*|8.*",
+    "laravel/tinker": "2.*"
+  },
+  "require-dev": {
+    "facade/ignition": "2.*",
+    "fakerphp/faker": "1.*",
+    "mockery/mockery": "1.*",
+    "nunomaduro/collision": "5.*",
+    "phpunit/phpunit": "9.*"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Hicham SADDEK",
+      "email": "h.saddek@serrahub.com",
+      "homepage": "https://linkedin.com/in/hicham-saddek",
+      "role": "Lead Developer"
+    },
+    {
+      "name": "Milebits Systems",
+      "email": "support@milebits.com",
+      "homepage": "https://os.milebits.com",
+      "role": "Project Manager"
+    }
+  ],
+  "support": {
+    "email": "support@os.milebits.com"
+  },
+  "prefer-stable": true,
+  "minimum-stability": "stable",
+  "autoload": {
+    "files": [
+      "src/Helpers/functions.php"
+    ],
+    "psr-4": {
+      "Milebits\\Eloquent\\Filters\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Milebits\\Eloquent\\Filters\\Providers\\LaraFiltersServiceProvider"
+      ]
+    }
+  }
+}
