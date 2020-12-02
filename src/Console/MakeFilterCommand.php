@@ -40,7 +40,7 @@ class MakeFilterCommand extends Command
 
         File::ensureDirectoryExists(app_path('Filters'));
 
-        if ($this->copyStub($filterName)) {
+        if (!$this->copyStub($filterName)) {
             $this->alert("Cannot create Filter $filterName maybe it already exists inside your Filters folder ?");
             return;
         }
