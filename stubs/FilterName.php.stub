@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Milebits\Eloquent\Filters\Filters\ModelFilter;
 
 /**
- * Class {{FilterName}}
+ * Class FilterName
  * @package App\Filters
  */
-class {{FilterName}} extends ModelFilter
+class FilterName extends ModelFilter
 {
     /**
      * The filter to apply to the model builder from the pipeline

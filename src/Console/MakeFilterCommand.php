@@ -60,9 +60,7 @@ class MakeFilterCommand extends Command
 
         $stubFile = Str::of(file_get_contents($this->stub));
 
-        $stubFile->replace("{{FilterName}}", $name);
-
-        File::put(app_path("Filters/$name.php"), $stubFile);
+        File::put(app_path("Filters/$name.php"), $stubFile->replace("FilterName", $name));
 
         return true;
     }
