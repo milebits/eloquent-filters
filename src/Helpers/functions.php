@@ -26,6 +26,6 @@ if (!function_exists('constant_value')) {
     function constant_value($class, string $name, $default = null)
     {
         if (is_object($class)) $class = get_class($class);
-        return constant_exists($class, $name) ? constant("$class::$name") : $default;
+        return constant_exists($class, $name) ? $class::$$name : $default;
     }
 }
