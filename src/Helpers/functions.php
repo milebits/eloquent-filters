@@ -10,9 +10,8 @@ if (!function_exists('constant_exist')) {
      */
     function constant_exists($class, string $const)
     {
-        if (is_object($class))
-            $class = get_class($class);
-        return defined("$class::$const");
+        if (is_object($class)) $class = get_class($class);
+        return defined("$class::$$const");
     }
 }
 
@@ -26,6 +25,6 @@ if (!function_exists('constant_value')) {
     function constant_value($class, string $name, $default = null)
     {
         if (is_object($class)) $class = get_class($class);
-        return constant_exists($class, $name) ? $class::$$name : $default;
+        return $class::$$name ?? $default;
     }
 }
