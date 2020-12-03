@@ -34,7 +34,7 @@ class ModelFilter
             ? ($this->final_filter
                 ? $this->apply($next($builder))
                 : $next($this->apply($builder)))
-            : $next;
+            : $next($builder);
     }
 
     /**
@@ -43,7 +43,7 @@ class ModelFilter
     public function condition(): bool
     {
         if (!is_null($this->extraKeyAttributes) && $this->validateAllKeyAttributes)
-            return $this->requestHasAll($this->keys());
+            return $this->requestHasAll($this->keys() ?? []);
 
         if (!is_null($this->extraKeyAttributes) && !$this->validateAllKeyAttributes)
             return $this->requestHasAtLeastOneOf($this->keys() ?? []);
