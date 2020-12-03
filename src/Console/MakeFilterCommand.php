@@ -20,7 +20,7 @@ class MakeFilterCommand extends Command
         $this->description = "Make new eloquent model filter for requests.";
         $this->signature = "milebits:make:filter {filter}";
 
-        $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/FilterName.php.stub");
+        $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelFilter.php.stub");
 
         parent::__construct();
     }
