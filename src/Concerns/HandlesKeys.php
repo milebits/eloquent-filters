@@ -39,7 +39,7 @@ trait HandlesKeys
      */
     public function guessKeyName(): string
     {
-        return Str::of(class_basename($this))->snake();
+        return Str::of(class_basename($this))->beforeLast('Filter')->snake()->lower();
     }
 
     /**
