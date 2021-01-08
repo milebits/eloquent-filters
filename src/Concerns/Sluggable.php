@@ -28,7 +28,7 @@ trait Sluggable
      *
      * @return void
      */
-    public static function bootHasSlug(): void
+    public static function bootSluggable(): void
     {
         self::addGlobalScope(new SlugScope());
         if (constant_value(static::class, 'AUTO_SLUG', false))
@@ -59,7 +59,7 @@ trait Sluggable
      *
      * @return void
      */
-    public function initializeHasSlug(): void
+    public function initializeSluggable(): void
     {
         $this->mergeFillable([$this->getSlugColumn()]);
     }
