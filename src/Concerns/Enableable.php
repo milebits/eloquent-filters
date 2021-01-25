@@ -3,7 +3,7 @@
 namespace Milebits\Eloquent\Filters\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
-use function Milebits\Eloquent\Filters\Helpers\constant_value;
+use function Milebits\Eloquent\Filters\Helpers\constVal;
 
 /**
  * Trait Enableable
@@ -34,7 +34,7 @@ trait Enableable
      */
     public function getEnabledColumn(): string
     {
-        return constant_value($this, 'ENABLED_COLUMN', 'enabled');
+        return constVal($this, 'ENABLED_COLUMN', 'enabled');
     }
 
     /**
@@ -68,6 +68,6 @@ trait Enableable
      */
     public function getEnableableScopeActivationValue(): bool
     {
-        return constant_value($this, 'EnableableScopeActivationValue', true);
+        return constVal($this, 'EnableableScopeActivationValue', true);
     }
 }

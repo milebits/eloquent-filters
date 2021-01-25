@@ -2,8 +2,14 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
-use function Milebits\Eloquent\Filters\Helpers\constant_value;
+use Illuminate\Database\Eloquent\Model;
+use function Milebits\Eloquent\Filters\Helpers\constVal;
 
+/**
+ * Trait Nameable
+ * @package Milebits\Eloquent\Filters\Concerns
+ * @mixin Model
+ */
 trait Nameable
 {
     /**
@@ -33,7 +39,7 @@ trait Nameable
      */
     public function getNameColumn()
     {
-        return constant_value($this, 'NAME_COLUMN', 'name');
+        return constVal($this, 'NAME_COLUMN', 'name');
     }
 
     /**

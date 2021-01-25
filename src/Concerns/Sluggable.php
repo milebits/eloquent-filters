@@ -5,7 +5,7 @@ namespace Milebits\Eloquent\Filters\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use function Milebits\Eloquent\Filters\Helpers\constant_value;
+use function Milebits\Eloquent\Filters\Helpers\constVal;
 
 /**
  * Trait HasSlug
@@ -31,15 +31,14 @@ trait Sluggable
     public static function bootHasSlug(): void
     {
         self::addGlobalScope(new SlugScope());
-        if (constant_value(static::class, 'AUTO_SLUG', false))
+        if (constVal(static::class, 'AUTO_SLUG', false))
             static::creating(function (self $model) {
                 $available = false;
-                $slug = Str::random(constant_value($model, 'AUTO_SLUG_LENGTH', 16));
-                while (!$available) {
+                do {
+                    $slug = Str::random(constVal($model, 'AUTO_SLUG_LENGTH', 16));
                     if (!static::query()->where($model->getSlugColumn(), '=', $slug)->exists())
                         $available = true;
-                    $slug = Str::random(constant_value($model, 'AUTO_SLUG_LENGTH', 16));
-                }
+                } while (!$available);
                 $model->setAttribute($model->getSlugColumn(), $slug);
             });
     }
@@ -51,7 +50,7 @@ trait Sluggable
      */
     public function getSlugColumn(): string
     {
-        return constant_value($this, 'SLUG_COLUMN', 'slug');
+        return constVal($this, 'SLUG_COLUMN', 'slug');
     }
 
     /**
