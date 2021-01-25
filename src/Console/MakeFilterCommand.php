@@ -38,6 +38,11 @@ class MakeFilterCommand extends Command
     {
         $filterName = $this->argument('filter');
 
+        if (empty($filterName)) {
+            $this->error("No filter name inserted");
+            return;
+        }
+
         File::ensureDirectoryExists(app_path('Filters'));
 
         if (!$this->copyStub($filterName)) {
