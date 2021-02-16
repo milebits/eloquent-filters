@@ -17,8 +17,8 @@ class MakeFilterCommand extends Command
      */
     public function __construct()
     {
-        $this->description = "Make new eloquent model filter for requests.";
-        $this->signature = "milebits:make:filter {filter}";
+        $this->description = "Create new eloquent model filter for requests.";
+        $this->signature = "make:filter {filter}";
 
         $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelFilter.php.stub");
 
@@ -44,6 +44,8 @@ class MakeFilterCommand extends Command
         }
 
         File::ensureDirectoryExists(app_path('Filters'));
+
+        $filterName = Str::of($filterName)->endsWith('Filter') ? $filterName : ($filterName . "Filter");
 
         if (!$this->copyStub($filterName)) {
             $this->alert("Cannot create Filter $filterName maybe it already exists inside your Filters folder ?");
