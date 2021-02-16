@@ -6,6 +6,7 @@ namespace Milebits\Eloquent\Filters\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
@@ -137,5 +138,14 @@ trait HasActivationCode
     {
         $this->activated_at = now();
         return $this;
+    }
+
+    /**
+     * @param int $length
+     * @return string
+     */
+    public function generateActivationCode(int $length = 16): string
+    {
+        return Str::random($length);
     }
 }
