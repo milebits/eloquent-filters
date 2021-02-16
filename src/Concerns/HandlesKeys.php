@@ -17,7 +17,7 @@ trait HandlesKeys
      */
     public function keys(array $attributes = null): ?array
     {
-        return collect($attributes ?? $this->extraKeyAttributes)->transform(function ($attribute) {
+        return collect($attributes ? $attributes : $this->extraKeyAttributes)->transform(function ($attribute) {
             return $this->key($attribute);
         })->toArray();
     }
@@ -28,7 +28,7 @@ trait HandlesKeys
      */
     public function key(string $attribute = null): ?string
     {
-        $str = Str::of($this->defaultKey ?? $this->guessKeyName());
+        $str = Str::of($this->defaultKey ? $this->defaultKey : $this->guessKeyName());
         if (!is_null($attribute))
             $str->append("_", $attribute);
         return $str;

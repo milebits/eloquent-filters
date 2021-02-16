@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Stringable;
-use function Milebits\Eloquent\Filters\Helpers\constVal;
+use function Milebits\Helpers\Helpers\staticPropVal;
 
 /**
  * Trait LaraFilters
@@ -28,7 +28,7 @@ trait Filterable
             ->through(
                 $only
                     ? (array)$filters ?? []
-                    : array_merge((array)constVal(self::class, "filters", []), (array)$filters)
+                    : array_merge((array)staticPropVal(self::class, "filters", []), (array)$filters)
             );
 
         return $result->then($then ?? function ($passable) {

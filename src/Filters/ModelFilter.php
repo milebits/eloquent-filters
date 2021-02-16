@@ -43,10 +43,10 @@ class ModelFilter
     public function condition(): bool
     {
         if (!is_null($this->extraKeyAttributes) && $this->validateAllKeyAttributes)
-            return $this->requestHasAll($this->keys() ?? []);
+            return $this->requestHasAll($this->keys() ? $this->keys() : []);
 
         if (!is_null($this->extraKeyAttributes) && !$this->validateAllKeyAttributes)
-            return $this->requestHasAtLeastOneOf($this->keys() ?? []);
+            return $this->requestHasAtLeastOneOf($this->keys() ? $this->keys() : []);
 
         return $this->requestHas($this->key());
     }

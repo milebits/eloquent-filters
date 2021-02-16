@@ -6,7 +6,7 @@ namespace Milebits\Eloquent\Filters\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use function Milebits\Eloquent\Filters\Helpers\constVal;
+use function Milebits\Helpers\Helpers\constVal;
 
 /**
  * Trait Priceable
@@ -25,7 +25,7 @@ trait Priceable
      */
     public function getPriceColumn(): string
     {
-        return constVal($this, "AMOUNT_COLUMN", "price");
+        return constVal($this, "PRICE_COLUMN", "price");
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Milebits\Eloquent\Filters\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
-use function Milebits\Eloquent\Filters\Helpers\constVal;
+use function Milebits\Helpers\Helpers\constVal;
 
 /**
  * Trait Enableable
