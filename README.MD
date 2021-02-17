@@ -119,3 +119,8 @@ This package give you access to a great deal of scopes with useful common fields
 - Scope `` Sluggable `` gives you access to: `` slug `` column.
 
 These scopes are rich with eloquent scopes methods, I cannot possibly document them all, but you can easily find them in the scopes themselves.
+# Contributions
+If in any case while using this package, and you which to request a new functionality to it, please contact us at suggestions@os.milebits.com and mention the package you are willing to contribute or suggest a new functionality.
+
+# Vulnerabilities
+If in any case while using this package, you encounter security issues or security vulnerabilities, please do report them as soon as possible by issuing an issue here in Github or by sending an email to security@os.milebits.com with the mention **Vulnerability Report milebits/eloquent-filters** as your subject.
