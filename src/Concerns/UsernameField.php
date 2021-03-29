@@ -12,11 +12,6 @@ use function Milebits\Helpers\Helpers\constVal;
  */
 trait UsernameField
 {
-    public function bootUsernameField(): void
-    {
-
-    }
-
     public function initializeUsernameField(): void
     {
         $this->mergeFillable([$this->getUsernameColumn()]);
