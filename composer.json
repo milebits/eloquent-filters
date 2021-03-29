@@ -46,7 +46,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Milebits\\Eloquent\\Filters\\Tests": "tests/"
+      "Milebits\\Eloquent\\Filters\\Tests\\": "tests/"
     }
   },
   "extra": {
