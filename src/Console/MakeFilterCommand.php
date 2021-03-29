@@ -17,7 +17,7 @@ class MakeFilterCommand extends Command
      */
     public function __construct()
     {
-        $this->description = "Create new eloquent model filter for requests.";
+        $this->description = "Create a new eloquent model filter for requests.";
         $this->signature = "make:filter {filter}";
 
         $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelFilter.php.stub");
