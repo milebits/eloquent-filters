@@ -30,9 +30,6 @@ trait Filterable
                     ? (array)$filters ?? []
                     : array_merge((array)staticPropVal(self::class, "filters", []), (array)$filters)
             );
-
-        return $result->then($then ?? function ($passable) {
-                return $passable;
-            });
+        return $result->then($then ?? fn($passable) => $passable);
     }
 }
