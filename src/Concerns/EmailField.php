@@ -17,6 +17,7 @@ trait EmailField
     public function initializeEmailField(): void
     {
         $this->mergeFillable(Arr::wrap($this->getEmailColumn()));
+        $this->mergeCasts([$this->getEmailColumn(), 'datetime']);
     }
 
     /**
