@@ -26,7 +26,7 @@ class NameScope implements Scope
     {
         $builder->macro('name', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), $name);
@@ -41,7 +41,7 @@ class NameScope implements Scope
     {
         $builder->macro('notName', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), '!=', $name);
@@ -56,7 +56,7 @@ class NameScope implements Scope
     {
         $builder->macro('nameLike', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), 'like', "$name%");
@@ -71,7 +71,7 @@ class NameScope implements Scope
     {
         $builder->macro('nameNotLike', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), 'notlike', "$name%");
@@ -86,7 +86,7 @@ class NameScope implements Scope
     {
         $builder->macro('nameContains', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), 'like', "%$name%");
@@ -101,7 +101,7 @@ class NameScope implements Scope
     {
         $builder->macro('nameDoesntContain', function (Builder $builder, string $name, string $column = null) {
             /**
-             * @var Nameable $model
+             * @var NameField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedNameColumn(), 'notlike', "%$name%");

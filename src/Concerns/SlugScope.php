@@ -26,7 +26,7 @@ class SlugScope implements Scope
     {
         $builder->macro('slug', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), '=', $slug);
@@ -41,7 +41,7 @@ class SlugScope implements Scope
     {
         $builder->macro('notSlug', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), '!=', $slug);
@@ -56,7 +56,7 @@ class SlugScope implements Scope
     {
         $builder->macro('slugLike', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'like', "$slug%");
@@ -71,7 +71,7 @@ class SlugScope implements Scope
     {
         $builder->macro('slugNotLike', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'notlike', "$slug%");
@@ -86,7 +86,7 @@ class SlugScope implements Scope
     {
         $builder->macro('slugContains', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'like', "%$slug%");
@@ -101,7 +101,7 @@ class SlugScope implements Scope
     {
         $builder->macro('slugDoesntContain', function (Builder $builder, string $slug, string $column = null) {
             /**
-             * @var Sluggable $model
+             * @var SlugField $model
              */
             $model = $builder->getModel();
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'notlike', "%$slug%");

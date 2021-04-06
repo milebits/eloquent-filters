@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait Amountable
+ * Trait AmountField
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
-trait Amountable
+trait AmountField
 {
-    public function initializeAmountable(): void
+    public function initializeAmountField(): void
     {
         $this->mergeFillable([$this->getAmountColumn()]);
     }

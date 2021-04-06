@@ -10,23 +10,23 @@ use Illuminate\Support\Str;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait HasActivationCode
+ * Trait ActivationCodeField
  * @package Milebits\Eloquent\Filters\Concerns
  *
  * @mixin Model
  * @property string $activation_code
  * @property Carbon $activated_at
  */
-trait HasActivationCode
+trait ActivationCodeField
 {
-    public static function bootHasActivationCode(): void
+    public static function bootActivationCodeField(): void
     {
-        static::addGlobalScope('whereNullActivatedAt', function (Builder $builder) {
+        static::addGlobalScope('whereNullActivatedAt', function ($builder) {
             return $builder->whereNull($builder->getModel()->decideActivatedAtColumn($builder));
         });
     }
 
-    public function initializeHasActivationCode(): void
+    public function initializeActivationCodeField(): void
     {
         $this->mergeFillable([$this->getActivationCodeColumn()]);
         $this->mergeCasts([$this->getActivatedAtColumn() => 'datetime']);

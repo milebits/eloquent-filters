@@ -21,14 +21,14 @@ use function Milebits\Helpers\Helpers\constVal;
  * @method static Builder slugContains(string $slug, string $column = null)
  * @method static Builder slugDoesntContain(string $slug, string $column = null)
  */
-trait Sluggable
+trait SlugField
 {
     /**
      * Boots the HasSlug trait.
      *
      * @return void
      */
-    public static function bootSluggable(): void
+    public static function bootSlugField(): void
     {
         self::addGlobalScope(new SlugScope());
         if (constVal(static::class, 'AUTO_SLUG', false))
@@ -58,7 +58,7 @@ trait Sluggable
      *
      * @return void
      */
-    public function initializeSluggable(): void
+    public function initializeSlugField(): void
     {
         $this->mergeFillable([$this->getSlugColumn()]);
     }

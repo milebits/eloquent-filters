@@ -6,25 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait Enableable
+ * Trait EnableField
  * @package Milebits\Eloquent\Filters\Concerns
  *
  * @mixin Model
  */
-trait Enableable
+trait EnableField
 {
     /**
      * @return void
      */
-    public static function bootEnableable(): void
+    public static function bootEnableField(): void
     {
-        static::addGlobalScope(new EnableableScope());
+        static::addGlobalScope(new EnabledScope());
     }
 
     /**
      * @return void
      */
-    public function initializeEnableable(): void
+    public function initializeEnableField(): void
     {
         $this->fillable = array_merge($this->fillable, [$this->getEnabledColumn()]);
     }
@@ -66,8 +66,8 @@ trait Enableable
     /**
      * @return bool
      */
-    public function getEnableableScopeActivationValue(): bool
+    public function getEnableFieldScopeActivationValue(): bool
     {
-        return constVal($this, 'EnableableScopeActivationValue', true);
+        return constVal($this, 'ENABLE_DEFAULT_VALUE', true);
     }
 }

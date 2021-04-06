@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait Priceable
+ * Trait PriceField
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
-trait Priceable
+trait PriceField
 {
-    public function initializePriceable(): void
+    public function initializePriceField(): void
     {
         $this->mergeFillable([$this->getPriceColumn()]);
     }

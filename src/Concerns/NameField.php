@@ -6,28 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait Nameable
+ * Trait NameField
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
-trait Nameable
+trait NameField
 {
     /**
-     * Boots the Nameable trait.
+     * Boots the NameField trait.
      *
      * @return void
      */
-    public static function bootNameable(): void
+    public static function bootNameField(): void
     {
         static::addGlobalScope(new NameScope());
     }
 
     /**
-     * Initializes the Nameable trait.
+     * Initializes the NameField trait.
      *
      * @return void
      */
-    public function initializeNameable(): void
+    public function initializeNameField(): void
     {
         $this->fillable = array_merge($this->fillable, [$this->getNameColumn()]);
     }
@@ -37,7 +37,7 @@ trait Nameable
      *
      * @return string
      */
-    public function getNameColumn()
+    public function getNameColumn(): string
     {
         return constVal($this, 'NAME_COLUMN', 'name');
     }
@@ -47,7 +47,7 @@ trait Nameable
      *
      * @return string
      */
-    public function getQualifiedNameColumn()
+    public function getQualifiedNameColumn(): string
     {
         return $this->qualifyColumn($this->getNameColumn());
     }

@@ -9,34 +9,34 @@ use Illuminate\Database\Eloquent\Model;
 use function Milebits\Helpers\Helpers\constVal;
 
 /**
- * Trait Activatable
+ * Trait ActiveField
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
-trait Activatable
+trait ActiveField
 {
-    public static function bootActivatable(): void
+    public static function bootActiveField(): void
     {
-        if (constVal(static::class, 'ACTIVATABLE_ENABLED', true))
-            static::addGlobalScope('whereNotActivated', function (Builder $builder) {
+        if (constVal(static::class, 'ACTIVE_COLUMN_ENABLED', true))
+            static::addGlobalScope('not_active', function ($builder) {
                 return $builder->where(
-                    $builder->getModel()->decideActivatableColumn($builder), '=',
-                    constVal($builder->getModel(), 'ACTIVATED_ACTIVATION_VALUE', true)
+                    $builder->getModel()->decideActiveColumn($builder), '=',
+                    constVal($builder->getModel(), 'ACTIVE_DEFAULT_VALUE', true)
                 );
             });
     }
 
-    public function initializeActivatable(): void
+    public function initializeActiveField(): void
     {
-        $this->mergeFillable([$this->getActivatedColumn()]);
+        $this->mergeFillable([$this->getActiveColumn()]);
     }
 
     /**
      * @return string
      */
-    public function getActivatedColumn(): string
+    public function getActiveColumn(): string
     {
-        return constVal($this, "ACTIVATED_COLUMN", 'activated');
+        return constVal($this, "ACTIVE_COLUMN", 'activated');
     }
 
     /**
@@ -46,8 +46,8 @@ trait Activatable
      */
     public function scopeWhereActivated(Builder $builder, bool $activated = true): Builder
     {
-        return $builder->withoutGlobalScope('whereNotActivated')->where(function (Builder $builder) use ($activated) {
-            return $builder->where($this->decideActivatableColumn($builder), '=', $activated);
+        return $builder->withoutGlobalScope('not_active')->where(function (Builder $builder) use ($activated) {
+            return $builder->where($this->decideActiveColumn($builder), '=', $activated);
         });
     }
 
@@ -55,19 +55,19 @@ trait Activatable
      * @param Builder $builder
      * @return string
      */
-    public function decideActivatableColumn(Builder $builder): string
+    public function decideActiveColumn(Builder $builder): string
     {
         return count((array)(property_exists($builder, 'joins') ? $builder->joins : [])) > 0
-            ? $this->getQualifiedActivatedColumn()
-            : $this->getActivatedColumn();
+            ? $this->getQualifiedActiveColumn()
+            : $this->getActiveColumn();
     }
 
     /**
      * @return string
      */
-    public function getQualifiedActivatedColumn(): string
+    public function getQualifiedActiveColumn(): string
     {
-        return $this->qualifyColumn($this->getActivatedColumn());
+        return $this->qualifyColumn($this->getActiveColumn());
     }
 
     /**
@@ -78,7 +78,7 @@ trait Activatable
     public function scopeWhereDeactivated(Builder $builder, bool $deactivated = true): Builder
     {
         return $builder->withoutGlobalScope('whereNotActivated')->where(function (Builder $builder) use ($deactivated) {
-            return $builder->where($this->decideActivatableColumn($builder), '=', !$deactivated);
+            return $builder->where($this->decideActiveColumn($builder), '=', !$deactivated);
         });
     }
 
@@ -87,7 +87,7 @@ trait Activatable
      */
     public function activate(): self
     {
-        $this->{$this->getActivatedColumn()} = true;
+        $this->{$this->getActiveColumn()} = true;
         return $this;
     }
 
@@ -96,7 +96,7 @@ trait Activatable
      */
     public function deactivate(): self
     {
-        $this->{$this->getActivatedColumn()} = false;
+        $this->{$this->getActiveColumn()} = false;
         return $this;
     }
 }
