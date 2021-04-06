@@ -13,6 +13,7 @@ class EloquentFiltersServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->commands([MakeFilterCommand::class]);
+        if ($this->app->runningInConsole())
+            $this->commands([MakeFilterCommand::class]);
     }
 }
