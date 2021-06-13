@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Milebits\Eloquent\Filters\Concerns\HandlesKeys;
 use Milebits\Eloquent\Filters\Concerns\HandlesRequests;
 
+
 /**
  * Class Filter
  * @package Milebits\Eloquent\Filters\Filters

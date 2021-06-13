@@ -4,6 +4,7 @@ namespace Milebits\Eloquent\Filters\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
+
 /**
  * Class ActiveFilter
  * @package App\Filters
