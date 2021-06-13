@@ -95,7 +95,7 @@ use Milebits\Eloquent\Filters\Concerns\Filterable;
 class Post extends Model{
     use Filterable;
 
-    public array $filters = [ NameFilter::class, EnableFilter::class, ];
+    public static array $filters = [ NameFilter::class, EnableFilter::class, ];
 }
 ```
 
