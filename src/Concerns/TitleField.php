@@ -44,4 +44,26 @@ trait TitleField
     {
         return $this->qualifyColumn($this->getTitleColumn());
     }
+
+    /**
+     * @param Builder $builder
+     * @param string $title
+     * @param string $operator
+     * @return Builder
+     */
+    public function scopeTitleContains(Builder $builder, string $title, string $operator = "like"): Builder
+    {
+        return $builder->where($this->decideTitleColumn($builder), $operator, "%$title%");
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string $title
+     * @param string $operator
+     * @return Builder
+     */
+    public function scopeTitleDoesntContain(Builder $builder, string $title, string $operator = "notlike"): Builder
+    {
+        return $this->scopeTitleContains($builder, $title, $operator);
+    }
 }
