@@ -3,6 +3,7 @@
 namespace Milebits\Eloquent\Filters\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Milebits\Eloquent\Filters\Concerns\EnabledScope;
 
 
 /**
@@ -19,6 +20,6 @@ class EnableFilter extends ModelFilter
      */
     public function apply(Builder $builder): Builder
     {
-        return $builder->where($this->key(), '=', (bool)$this->keyValue());
+        return $builder->withoutGlobalScope(EnabledScope::class)->where($this->key(), '=', (bool)$this->keyValue());
     }
 }

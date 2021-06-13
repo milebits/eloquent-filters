@@ -19,6 +19,6 @@ class ActiveFilter extends ModelFilter
      */
     public function apply(Builder $builder): Builder
     {
-        return $builder->where($this->key(), '=', (bool)$this->keyValue());
+        return $builder->withoutGlobalScope("not_active")->where($this->key(), '=', (bool)$this->keyValue());
     }
 }
