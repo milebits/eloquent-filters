@@ -36,7 +36,7 @@ trait ActiveField
      */
     public function getActiveColumn(): string
     {
-        return constVal($this, "ACTIVE_COLUMN", 'activated');
+        return constVal($this, "ACTIVE_COLUMN", 'active');
     }
 
     /**

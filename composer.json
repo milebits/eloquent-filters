@@ -3,7 +3,7 @@
   "description": "A Laravel PHP library that allows the user to filter the result of Eloquent Model query builders.",
   "type": "library",
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.0",
     "laravel/framework": "^6|^7|^8",
     "milebits/helpers": ">=1.0"
   },

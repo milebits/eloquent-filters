@@ -34,7 +34,7 @@ trait EnableField
      */
     public function getEnabledColumn(): string
     {
-        return constVal($this, 'ENABLED_COLUMN', 'enabled');
+        return constVal($this, 'ENABLED_COLUMN', 'enable');
     }
 
     /**
