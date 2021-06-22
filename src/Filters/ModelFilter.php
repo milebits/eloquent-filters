@@ -27,7 +27,7 @@ class ModelFilter
     /**
      * @param Builder $builder
      * @param Closure $next
-     * @return Closure|Builder|mixed
+     * @return Builder
      */
     public function handle(Builder $builder, Closure $next): Builder
     {
