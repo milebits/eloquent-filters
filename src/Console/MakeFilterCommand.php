@@ -12,6 +12,11 @@ class MakeFilterCommand extends Command
 {
     protected ?string $stub = null;
 
+    public function __parentConstruct()
+    {
+        parent::__construct();
+    }
+
     /**
      * MakeFilterCommand constructor.
      */

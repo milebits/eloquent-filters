@@ -20,6 +20,6 @@ class MakeRangeFilterCommand extends MakeFilterCommand
         $this->description = "Create a new eloquent model range filter for requests.";
         $this->signature = "make:filter-range {filter}";
         $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelRangeFilter.php.stub");
-        parent::__construct();
+        $this->__parentConstruct();
     }
 }
