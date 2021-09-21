@@ -16,8 +16,8 @@ trait EmailField
 {
     public function initializeEmailField(): void
     {
-        $this->mergeFillable(Arr::wrap($this->getEmailColumn()));
-        $this->mergeCasts([$this->getEmailColumn(), 'datetime']);
+        $this->mergeFillable([$this->getEmailColumn(), $this->getEmailVerifiedAtColumn()]);
+        $this->mergeCasts([$this->getEmailVerifiedAtColumn(), 'datetime']);
     }
 
     /**
@@ -26,6 +26,14 @@ trait EmailField
     public function getEmailColumn(): string
     {
         return constVal($this, 'EMAIL_COLUMN', 'email');
+    }
+    
+    /**
+     * @return string
+     */
+    public function getEmailVerifiedAtColumn(): string
+    {
+        return constVal($this, 'EMAIL_VERIFIED_AT_COLUMN', 'email_verified_at');
     }
 
     /**
@@ -60,11 +68,28 @@ trait EmailField
     }
 
     /**
+     * @param Builder $builder
+     * @return string
+     */
+    public function decideEmailVerifiedAtColumn(Builder $builder): string
+    {
+        return count(property_exists($builder, 'joins') ? $builder->joins : []) > 0 ? $this->getQualifiedEmailVerifiedAtColumn() : $this->getEmailVerifiedAtColumn();
+    }
+
+    /**
      * @return string
      */
     public function getQualifiedEmailColumn(): string
     {
         return $this->qualifyColumn($this->getEmailColumn());
+    }
+
+    /**
+     * @return string
+     */
+    public function getQualifiedEmailVerifiedAtColumn(): string
+    {
+        return $this->qualifyColumn($this->getEmailVerifiedAtColumn());
     }
 
     /**
@@ -87,5 +112,16 @@ trait EmailField
     public function scopeEmailLike(Builder $builder, string $email, bool $isLike = true): Builder
     {
         return $this->scopeEmail($builder, $email, $isLike ? 'like' : 'not like');
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string $email
+     * @param bool $isLike
+     * @return Builder
+     */
+    public function scopeEmailVerified(Builder $builder, bool $verified = true): Builder
+    {
+        return $verified ? $builder->whereNotNull($this->decideEmailVerifiedAtColumn()) : $builder->whereNull($this->decideEmailVerifiedAtColumn());
     }
 }
