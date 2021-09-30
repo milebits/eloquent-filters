@@ -34,7 +34,7 @@ class MakeFilterCommand extends Command
      * @param string $path
      * @return false|string
      */
-    public function resolveFullyQualifiedPath(string $path)
+    public function resolveFullyQualifiedPath(string $path): bool|string
     {
         return realpath(trim($path, '/'));
     }
