@@ -8,23 +8,16 @@ use Illuminate\Support\Str;
 
 class MakeFilterCommand extends Command
 {
-    protected ?string $stub = null;
-
-    public function __parentConstruct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Create a new eloquent model filter for requests.';
+    protected $signature = 'make:filter {filter}';
+    protected ?string $stub = __DIR__ . "/../../stubs/ModelFilter.php.stub";
 
     /**
      * MakeFilterCommand constructor.
      */
     public function __construct()
     {
-        $this->description = "Create a new eloquent model filter for requests.";
-        $this->signature = "make:filter {filter}";
-
-        $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelFilter.php.stub");
-
+        $this->stub = $this->resolveFullyQualifiedPath($this->stub ?: __DIR__ . "/../../stubs/ModelFilter.php.stub");
         parent::__construct();
     }
 

@@ -4,16 +4,9 @@ namespace Milebits\Eloquent\Filters\Console;
 
 class MakeRangeFilterCommand extends MakeFilterCommand
 {
-    protected ?string $stub = null;
+    protected ?string $stub = __DIR__ . '/../../stubs/ModelRangeFilter.php.stub';
 
-    /**
-     * MakeFilterCommand constructor.
-     */
-    public function __construct()
-    {
-        $this->description = "Create a new eloquent model range filter for requests.";
-        $this->signature = "make:filter-range {filter}";
-        $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelRangeFilter.php.stub");
-        parent::__construct();
-    }
+    protected $description = 'Create a new eloquent model range filter for requests.';
+
+    protected $signature = 'make:filter-range {filter}';
 }
