@@ -10,6 +10,7 @@ use function constVal;
 
 /**
  * Trait PhoneField
+ *
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
@@ -45,6 +46,7 @@ trait PhoneField
     /**
      * @param Builder $builder
      * @param string $phone
+     *
      * @return Builder
      */
     public function scopePhoneNot(Builder $builder, string $phone): Builder
@@ -56,6 +58,7 @@ trait PhoneField
      * @param Builder $builder
      * @param string $phone
      * @param string $operator
+     *
      * @return Builder
      */
     public function scopePhone(Builder $builder, string $phone, string $operator = '='): Builder
@@ -65,6 +68,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decidePhoneColumn(Builder $builder): string
@@ -85,6 +89,7 @@ trait PhoneField
     /**
      * @param Builder $builder
      * @param string $phone
+     *
      * @return Builder
      */
     public function scopePhoneLike(Builder $builder, string $phone): Builder
@@ -95,6 +100,7 @@ trait PhoneField
     /**
      * @param Builder $builder
      * @param string $phone
+     *
      * @return Builder
      */
     public function scopePhoneNotLike(Builder $builder, string $phone): Builder
@@ -120,6 +126,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decidePhoneVerifiedAtColumn(Builder $builder): string
@@ -130,6 +137,7 @@ trait PhoneField
     /**
      * @param Builder $builder
      * @param bool $verified
+     *
      * @return Builder
      */
     public function scopeVerifiedPhone(Builder $builder, bool $verified = true): Builder
@@ -140,6 +148,7 @@ trait PhoneField
     /**
      * @param Builder $builder
      * @param bool $verified
+     *
      * @return Builder
      */
     public function scopeUnverifiedPhone(Builder $builder, bool $verified = true): Builder
@@ -149,6 +158,7 @@ trait PhoneField
 
     /**
      * @param bool $verify
+     *
      * @return $this
      */
     public function verifyPhone(bool $verify = true): self
@@ -159,6 +169,7 @@ trait PhoneField
 
     /**
      * @param bool $unVerify
+     *
      * @return $this
      */
     public function unVerifyPhone(bool $unVerify = true): self
