@@ -4,11 +4,11 @@ namespace Milebits\Eloquent\Filters\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use function Milebits\Helpers\Helpers\constVal;
+use function constVal;
 
 /**
  * Trait EmailField
+ *
  * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
@@ -17,7 +17,7 @@ trait EmailField
     public function initializeEmailField(): void
     {
         $this->mergeFillable([$this->getEmailColumn(), $this->getEmailVerifiedAtColumn()]);
-        $this->mergeCasts([$this->getEmailVerifiedAtColumn(), 'datetime']);
+        $this->mergeCasts([$this->getEmailVerifiedAtColumn() => 'datetime']);
     }
 
     /**
@@ -27,7 +27,7 @@ trait EmailField
     {
         return constVal($this, 'EMAIL_COLUMN', 'email');
     }
-    
+
     /**
      * @return string
      */
@@ -40,6 +40,7 @@ trait EmailField
      * @param Builder $builder
      * @param string $email
      * @param bool $not
+     *
      * @return Builder
      */
     public function scopeEmailNot(Builder $builder, string $email, bool $not = true): Builder
@@ -51,6 +52,7 @@ trait EmailField
      * @param Builder $builder
      * @param string $email
      * @param string $operator
+     *
      * @return Builder
      */
     public function scopeEmail(Builder $builder, string $email, string $operator = '='): Builder
@@ -60,6 +62,7 @@ trait EmailField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideEmailColumn(Builder $builder): string
@@ -69,6 +72,7 @@ trait EmailField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideEmailVerifiedAtColumn(Builder $builder): string
@@ -96,6 +100,7 @@ trait EmailField
      * @param Builder $builder
      * @param string $email
      * @param bool $notLike
+     *
      * @return Builder
      */
     public function scopeEmailNotLike(Builder $builder, string $email, bool $notLike = true): Builder
@@ -107,6 +112,7 @@ trait EmailField
      * @param Builder $builder
      * @param string $email
      * @param bool $isLike
+     *
      * @return Builder
      */
     public function scopeEmailLike(Builder $builder, string $email, bool $isLike = true): Builder
@@ -116,12 +122,12 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param string $email
-     * @param bool $isLike
+     * @param bool $verified
+     *
      * @return Builder
      */
     public function scopeEmailVerified(Builder $builder, bool $verified = true): Builder
     {
-        return $verified ? $builder->whereNotNull($this->decideEmailVerifiedAtColumn()) : $builder->whereNull($this->decideEmailVerifiedAtColumn());
+        return $verified ? $builder->whereNotNull($this->decideEmailVerifiedAtColumn($builder)) : $builder->whereNull($this->decideEmailVerifiedAtColumn($builder));
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use function Milebits\Helpers\Helpers\constVal;
+use function constVal;
 
 /**
  * Trait PhoneField

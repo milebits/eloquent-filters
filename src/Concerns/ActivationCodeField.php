@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use function Milebits\Helpers\Helpers\constVal;
+use function constVal;
 
 /**
  * Trait ActivationCodeField
@@ -21,9 +21,10 @@ trait ActivationCodeField
 {
     public static function bootActivationCodeField(): void
     {
-        static::addGlobalScope('whereNullActivatedAt', function ($builder) {
-            return $builder->whereNull($builder->getModel()->decideActivatedAtColumn($builder));
-        });
+        if (constVal(static::class, 'HIDE_NOT_ACTIVATED', true))
+            static::addGlobalScope('whereNullActivatedAt', function ($builder) {
+                return $builder->whereNull($builder->getModel()->decideActivatedAtColumn($builder));
+            });
     }
 
     public function initializeActivationCodeField(): void
