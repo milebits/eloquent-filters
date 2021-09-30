@@ -3,11 +3,6 @@
 
 namespace Milebits\Eloquent\Filters\Console;
 
-
-/**
- * Class MakeRangeFilterCommand
- * @package Milebits\Eloquent\Filters\Console
- */
 class MakeRangeFilterCommand extends MakeFilterCommand
 {
     protected ?string $stub = null;
@@ -20,6 +15,6 @@ class MakeRangeFilterCommand extends MakeFilterCommand
         $this->description = "Create a new eloquent model range filter for requests.";
         $this->signature = "make:filter-range {filter}";
         $this->stub = $this->resolveFullyQualifiedPath(__DIR__ . "/../../stubs/ModelRangeFilter.php.stub");
-        $this->__parentConstruct();
+        parent::__construct();
     }
 }
