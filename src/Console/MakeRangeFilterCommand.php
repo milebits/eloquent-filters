@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Console;
 
 class MakeRangeFilterCommand extends MakeFilterCommand

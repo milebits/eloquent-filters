@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Console;
-
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -32,6 +30,7 @@ class MakeFilterCommand extends Command
 
     /**
      * @param string $path
+     *
      * @return false|string
      */
     public function resolveFullyQualifiedPath(string $path): bool|string
@@ -63,6 +62,7 @@ class MakeFilterCommand extends Command
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public function copyStub(string $name): bool
