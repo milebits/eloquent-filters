@@ -2,16 +2,15 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use function constVal;
 
 /**
- * Trait PhoneField
+ * Trait PhoneField.
  *
- * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
 trait PhoneField
@@ -24,8 +23,12 @@ trait PhoneField
     public static function registerPhoneVerificationScope(): void
     {
         $verificationEnabled = constVal(self::class, 'PHONE_VERIFICATION', false);
-        if (!$verificationEnabled) $verificationEnabled = method_exists(self::class, 'phoneVerification') ? call_user_func([self::class, 'phoneVerification']) : $verificationEnabled;
-        if ($verificationEnabled) self::addGlobalScope('phoneVerification', fn($builder) => $builder->verifiedPhone());
+        if (!$verificationEnabled) {
+            $verificationEnabled = method_exists(self::class, 'phoneVerification') ? call_user_func([self::class, 'phoneVerification']) : $verificationEnabled;
+        }
+        if ($verificationEnabled) {
+            self::addGlobalScope('phoneVerification', fn ($builder) => $builder->verifiedPhone());
+        }
     }
 
     public function initializePhoneField(): void
@@ -45,7 +48,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param string $phone
+     * @param string  $phone
      *
      * @return Builder
      */
@@ -56,8 +59,8 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param string $phone
-     * @param string $operator
+     * @param string  $phone
+     * @param string  $operator
      *
      * @return Builder
      */
@@ -88,7 +91,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param string $phone
+     * @param string  $phone
      *
      * @return Builder
      */
@@ -99,7 +102,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param string $phone
+     * @param string  $phone
      *
      * @return Builder
      */
@@ -136,7 +139,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param bool $verified
+     * @param bool    $verified
      *
      * @return Builder
      */
@@ -147,7 +150,7 @@ trait PhoneField
 
     /**
      * @param Builder $builder
-     * @param bool $verified
+     * @param bool    $verified
      *
      * @return Builder
      */
@@ -164,6 +167,7 @@ trait PhoneField
     public function verifyPhone(bool $verify = true): self
     {
         $this->{$this->getPhoneVerifiedAtColumn()} = $verify ? now() : null;
+
         return $this;
     }
 

@@ -1,16 +1,14 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Concerns;
 
-
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use function constVal;
 
 /**
- * Trait PriceField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait PriceField.
+ *
  * @mixin Model
  */
 trait PriceField
@@ -25,11 +23,12 @@ trait PriceField
      */
     public function getPriceColumn(): string
     {
-        return constVal($this, "PRICE_COLUMN", "price");
+        return constVal($this, 'PRICE_COLUMN', 'price');
     }
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWherePriceEmpty(Builder $builder): Builder
@@ -41,11 +40,12 @@ trait PriceField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decidePriceColumn(Builder $builder): string
     {
-        return count((array)(property_exists($builder, 'joins') ? $builder->joins : [])) > 0
+        return count((array) (property_exists($builder, 'joins') ? $builder->joins : [])) > 0
             ? $this->getQualifiedPriceColumn()
             : $this->getPriceColumn();
     }
@@ -60,6 +60,7 @@ trait PriceField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWherePriceNotEmpty(Builder $builder): Builder
@@ -71,8 +72,9 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $price
-     * @param string $operator
+     * @param float   $price
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeWherePriceIs(Builder $builder, float $price, string $operator = '='): Builder
@@ -84,8 +86,9 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $price
-     * @param string $operator
+     * @param float   $price
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeWherePriceIsNot(Builder $builder, float $price, string $operator = '!='): Builder
@@ -97,10 +100,11 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeWherePriceRangeOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = false): Builder
@@ -112,10 +116,11 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeWherePriceRangeIsNotOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = true): Builder
@@ -127,6 +132,7 @@ trait PriceField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeOrWherePriceEmpty(Builder $builder): Builder
@@ -138,6 +144,7 @@ trait PriceField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeOrWherePriceNotEmpty(Builder $builder): Builder
@@ -149,8 +156,9 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $price
-     * @param string $operator
+     * @param float   $price
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeOrWherePriceIs(Builder $builder, float $price, string $operator = '='): Builder
@@ -162,8 +170,9 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $price
-     * @param string $operator
+     * @param float   $price
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeOrWherePriceIsNot(Builder $builder, float $price, string $operator = '!='): Builder
@@ -175,10 +184,11 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeOrWherePriceRangeOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = false): Builder
@@ -190,10 +200,11 @@ trait PriceField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeOrWherePriceRangeIsNotOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = true): Builder

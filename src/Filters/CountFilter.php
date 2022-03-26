@@ -2,12 +2,9 @@
 
 namespace Milebits\Eloquent\Filters\Filters;
 
-
 /**
- * Class CountFilter
- * @package Milebits\Eloquent\Filters\Filters
+ * Class CountFilter.
  */
 class CountFilter extends RangeFilter
 {
-
 }

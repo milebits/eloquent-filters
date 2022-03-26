@@ -2,14 +2,13 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use function constVal;
 
 /**
- * Trait TitleField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait TitleField.
  *
  * @mixin Model
  */
@@ -30,6 +29,7 @@ trait TitleField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideTitleColumn(Builder $builder): string
@@ -47,22 +47,24 @@ trait TitleField
 
     /**
      * @param Builder $builder
-     * @param string $title
-     * @param string $operator
+     * @param string  $title
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeTitleContains(Builder $builder, string $title, string $operator = "like"): Builder
+    public function scopeTitleContains(Builder $builder, string $title, string $operator = 'like'): Builder
     {
         return $builder->where($this->decideTitleColumn($builder), $operator, "%$title%");
     }
 
     /**
      * @param Builder $builder
-     * @param string $title
-     * @param string $operator
+     * @param string  $title
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeTitleDoesntContain(Builder $builder, string $title, string $operator = "notlike"): Builder
+    public function scopeTitleDoesntContain(Builder $builder, string $title, string $operator = 'notlike'): Builder
     {
         return $this->scopeTitleContains($builder, $title, $operator);
     }

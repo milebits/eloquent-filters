@@ -2,10 +2,10 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use function constVal;
 
 /**
  * @mixin Model
@@ -27,7 +27,8 @@ trait UsernameField
 
     /**
      * @param Builder $builder
-     * @param string $username
+     * @param string  $username
+     *
      * @return Builder
      */
     public function scopeUsernameNot(Builder $builder, string $username): Builder
@@ -37,8 +38,9 @@ trait UsernameField
 
     /**
      * @param Builder $builder
-     * @param string $username
-     * @param string $operator
+     * @param string  $username
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeUsername(Builder $builder, string $username, string $operator = '='): Builder
@@ -48,6 +50,7 @@ trait UsernameField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideUsernameColumn(Builder $builder): string
@@ -67,7 +70,8 @@ trait UsernameField
 
     /**
      * @param Builder $builder
-     * @param string $username
+     * @param string  $username
+     *
      * @return Builder
      */
     public function scopeUsernameLike(Builder $builder, string $username): Builder
@@ -77,7 +81,8 @@ trait UsernameField
 
     /**
      * @param Builder $builder
-     * @param string $username
+     * @param string  $username
+     *
      * @return Builder
      */
     public function scopeUsernameNotLike(Builder $builder, string $username): Builder

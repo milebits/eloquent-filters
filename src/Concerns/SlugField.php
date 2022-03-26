@@ -2,14 +2,13 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use function constVal;
 
 /**
- * Trait HasSlug
- * @package App\Concerns
+ * Trait HasSlug.
  *
  * @mixin Model
  * @mixin Builder
@@ -31,16 +30,18 @@ trait SlugField
     public static function bootSlugField(): void
     {
         self::addGlobalScope(new SlugScope());
-        if (constVal(static::class, 'AUTO_SLUG', false))
+        if (constVal(static::class, 'AUTO_SLUG', false)) {
             static::creating(function (self $model) {
                 $available = false;
                 do {
                     $slug = Str::random(constVal($model, 'AUTO_SLUG_LENGTH', 16));
-                    if (!static::query()->where($model->getSlugColumn(), '=', $slug)->exists())
+                    if (!static::query()->where($model->getSlugColumn(), '=', $slug)->exists()) {
                         $available = true;
+                    }
                 } while (!$available);
                 $model->setAttribute($model->getSlugColumn(), $slug);
             });
+        }
     }
 
     /**

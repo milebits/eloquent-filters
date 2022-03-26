@@ -11,7 +11,7 @@ use Illuminate\Support\Stringable;
 use function staticPropVal;
 
 /**
- * Trait LaraFilters
+ * Trait LaraFilters.
  *
  * @mixin Model
  */
@@ -19,8 +19,8 @@ trait Filterable
 {
     /**
      * @param array|string[]|Stringable[]|string|Stringable|null $filters
-     * @param bool $only
-     * @param Closure|null $then
+     * @param bool                                               $only
+     * @param Closure|null                                       $then
      *
      * @return Builder
      */
@@ -32,6 +32,7 @@ trait Filterable
                     ? Arr::wrap($filters)
                     : array_merge(Arr::wrap(staticPropVal(self::class, 'filters', [])), Arr::wrap($filters))
             );
-        return $result->then($then ?: fn($passable) => $passable);
+
+        return $result->then($then ?: fn ($passable) => $passable);
     }
 }

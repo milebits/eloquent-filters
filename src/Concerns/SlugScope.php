@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
 /**
- * Class SlugScope
- * @package App\Concerns
+ * Class SlugScope.
  */
 class SlugScope implements Scope
 {
     use ScopeExtensible;
 
     protected array $extensions = [
-        'slug', 'notSlug', "slugLike", "slugNotLike", "slugContains", "slugDoesntContain",
+        'slug', 'notSlug', 'slugLike', 'slugNotLike', 'slugContains', 'slugDoesntContain',
     ];
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addSlug(Builder $builder): void
@@ -29,12 +29,14 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), '=', $slug);
         });
     }
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addNotSlug(Builder $builder): void
@@ -44,12 +46,14 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), '!=', $slug);
         });
     }
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addSlugLike(Builder $builder): void
@@ -59,12 +63,14 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'like', "$slug%");
         });
     }
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addSlugNotLike(Builder $builder): void
@@ -74,12 +80,14 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'notlike', "$slug%");
         });
     }
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addSlugContains(Builder $builder): void
@@ -89,12 +97,14 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'like', "%$slug%");
         });
     }
 
     /**
      * @param Builder $builder
+     *
      * @return void
      */
     public function addSlugDoesntContain(Builder $builder): void
@@ -104,12 +114,12 @@ class SlugScope implements Scope
              * @var SlugField $model
              */
             $model = $builder->getModel();
+
             return $builder->where($column ?? $model->getQualifiedSlugColumn(), 'notlike', "%$slug%");
         });
     }
 
     public function apply(Builder $builder, Model $model): void
     {
-
     }
 }

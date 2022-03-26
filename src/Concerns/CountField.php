@@ -2,14 +2,14 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use JetBrains\PhpStorm\Pure;
-use function constVal;
 
 /**
- * Trait CountField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait CountField.
+ *
  * @mixin Model
  */
 trait CountField
@@ -22,35 +22,39 @@ trait CountField
     /**
      * @return string
      */
-    #[Pure] public function getCountColumn(): string
-    {
-        return constVal($this, "COUNT_COLUMN", "count");
-    }
+    #[Pure]
+ public function getCountColumn(): string
+ {
+     return constVal($this, 'COUNT_COLUMN', 'count');
+ }
 
     /**
      * @param Builder $builder
-     * @param int $count
-     * @param string $operator
+     * @param int     $count
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeCountFieldNot(Builder $builder, int $count, string $operator = "!="): Builder
+    public function scopeCountFieldNot(Builder $builder, int $count, string $operator = '!='): Builder
     {
         return $this->scopeCountField($builder, $count, $operator);
     }
 
     /**
      * @param Builder $builder
-     * @param int $count
-     * @param string $operator
+     * @param int     $count
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeCountField(Builder $builder, int $count, string $operator = "="): Builder
+    public function scopeCountField(Builder $builder, int $count, string $operator = '='): Builder
     {
         return $builder->where($this->decideCountColumn($builder), $operator, $count);
     }
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideCountColumn(Builder $builder): string
@@ -72,6 +76,7 @@ trait CountField
     public function incrementCount(): self
     {
         $this->{$this->getCountColumn()}++;
+
         return $this;
     }
 
@@ -81,6 +86,7 @@ trait CountField
     public function decrementCount(): self
     {
         $this->{$this->getCountColumn()}--;
+
         return $this;
     }
 }
