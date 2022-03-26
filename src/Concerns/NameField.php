@@ -2,12 +2,12 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
-use Illuminate\Database\Eloquent\Model;
 use function constVal;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Trait NameField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait NameField.
+ *
  * @mixin Model
  */
 trait NameField

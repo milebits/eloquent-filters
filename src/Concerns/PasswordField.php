@@ -1,17 +1,16 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use function constVal;
 
 /**
- * Trait PasswordField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait PasswordField.
+ *
  * @mixin Model
  */
 trait PasswordField
@@ -40,6 +39,7 @@ trait PasswordField
 
     /**
      * @param int $length
+     *
      * @return string
      */
     public function generatePassword(int $length = 16): string
@@ -49,6 +49,7 @@ trait PasswordField
 
     /**
      * @param string $password
+     *
      * @return bool
      */
     public function checkPassword(string $password): bool

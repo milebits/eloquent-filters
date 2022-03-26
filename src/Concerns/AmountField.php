@@ -1,16 +1,14 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Concerns;
 
-
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use function constVal;
 
 /**
- * Trait AmountField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait AmountField.
+ *
  * @mixin Model
  */
 trait AmountField
@@ -25,11 +23,12 @@ trait AmountField
      */
     public function getAmountColumn(): string
     {
-        return constVal($this, "AMOUNT_COLUMN", "amount");
+        return constVal($this, 'AMOUNT_COLUMN', 'amount');
     }
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWhereAmountEmpty(Builder $builder): Builder
@@ -41,11 +40,12 @@ trait AmountField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideAmountColumn(Builder $builder): string
     {
-        return count((array)(property_exists($builder, 'joins') ? $builder->joins : [])) > 0
+        return count((array) (property_exists($builder, 'joins') ? $builder->joins : [])) > 0
             ? $this->getQualifiedAmountColumn()
             : $this->getAmountColumn();
     }
@@ -60,6 +60,7 @@ trait AmountField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWhereAmountNotEmpty(Builder $builder): Builder
@@ -71,8 +72,9 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $amount
-     * @param string $operator
+     * @param float   $amount
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeWhereAmountIs(Builder $builder, float $amount, string $operator = '='): Builder
@@ -84,8 +86,9 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $amount
-     * @param string $operator
+     * @param float   $amount
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeWhereAmountIsNot(Builder $builder, float $amount, string $operator = '!='): Builder
@@ -97,10 +100,11 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeWhereAmountRangeOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = false): Builder
@@ -112,10 +116,11 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeWhereAmountRangeIsNotOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = true): Builder
@@ -127,6 +132,7 @@ trait AmountField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountEmpty(Builder $builder): Builder
@@ -138,6 +144,7 @@ trait AmountField
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountNotEmpty(Builder $builder): Builder
@@ -149,8 +156,9 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $amount
-     * @param string $operator
+     * @param float   $amount
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountIs(Builder $builder, float $amount, string $operator = '='): Builder
@@ -162,8 +170,9 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $amount
-     * @param string $operator
+     * @param float   $amount
+     * @param string  $operator
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountIsNot(Builder $builder, float $amount, string $operator = '!='): Builder
@@ -175,10 +184,11 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountRangeOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = false): Builder
@@ -190,10 +200,11 @@ trait AmountField
 
     /**
      * @param Builder $builder
-     * @param float $start
-     * @param float $end
-     * @param string $boolean
-     * @param bool $not
+     * @param float   $start
+     * @param float   $end
+     * @param string  $boolean
+     * @param bool    $not
+     *
      * @return Builder
      */
     public function scopeOrWhereAmountRangeIsNotOf(Builder $builder, float $start, float $end, string $boolean = 'and', bool $not = true): Builder

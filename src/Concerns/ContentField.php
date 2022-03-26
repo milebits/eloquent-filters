@@ -2,14 +2,13 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use function constVal;
 
 /**
- * Trait ContentField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait ContentField.
  *
  * @mixin Model
  */
@@ -30,28 +29,31 @@ trait ContentField
 
     /**
      * @param Builder $builder
-     * @param string $content
-     * @param string $operator
+     * @param string  $content
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeContentDoesntContain(Builder $builder, string $content, string $operator = "notlike"): Builder
+    public function scopeContentDoesntContain(Builder $builder, string $content, string $operator = 'notlike'): Builder
     {
         return $this->scopeContentContains($builder, $content, $operator);
     }
 
     /**
      * @param Builder $builder
-     * @param string $content
-     * @param string $operator
+     * @param string  $content
+     * @param string  $operator
+     *
      * @return Builder
      */
-    public function scopeContentContains(Builder $builder, string $content, string $operator = "like"): Builder
+    public function scopeContentContains(Builder $builder, string $content, string $operator = 'like'): Builder
     {
         return $builder->where($this->decideContentColumn($builder), $operator, "%$content%");
     }
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideContentColumn(Builder $builder): string

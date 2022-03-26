@@ -2,12 +2,11 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
-use Illuminate\Database\Eloquent\Model;
 use function constVal;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Trait EnableField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait EnableField.
  *
  * @mixin Model
  */
@@ -51,6 +50,7 @@ trait EnableField
     public function enable(): self
     {
         $this->{$this->getEnabledColumn()} = true;
+
         return $this;
     }
 
@@ -60,6 +60,7 @@ trait EnableField
     public function disable(): self
     {
         $this->{$this->getEnabledColumn()} = false;
+
         return $this;
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Filters;
 
 use Closure;
@@ -8,14 +7,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Milebits\Eloquent\Filters\Concerns\HandlesKeys;
 use Milebits\Eloquent\Filters\Concerns\HandlesRequests;
 
-
 /**
- * Class Filter
- * @package Milebits\Eloquent\Filters\Filters
+ * Class Filter.
  */
 class ModelFilter
 {
-    use HandlesRequests, HandlesKeys;
+    use HandlesRequests;
+    use HandlesKeys;
 
     protected ?string $defaultKey = null;
 
@@ -27,6 +25,7 @@ class ModelFilter
     /**
      * @param Builder $builder
      * @param Closure $next
+     *
      * @return Builder
      */
     public function handle(Builder $builder, Closure $next): Builder
@@ -43,17 +42,20 @@ class ModelFilter
      */
     public function condition(): bool
     {
-        if (!is_null($this->extraKeyAttributes) && $this->validateAllKeyAttributes)
+        if (!is_null($this->extraKeyAttributes) && $this->validateAllKeyAttributes) {
             return $this->requestHasAll($this->keys() ? $this->keys() : []);
+        }
 
-        if (!is_null($this->extraKeyAttributes) && !$this->validateAllKeyAttributes)
+        if (!is_null($this->extraKeyAttributes) && !$this->validateAllKeyAttributes) {
             return $this->requestHasAtLeastOneOf($this->keys() ? $this->keys() : []);
+        }
 
         return $this->requestHas($this->key());
     }
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function apply(Builder $builder): Builder

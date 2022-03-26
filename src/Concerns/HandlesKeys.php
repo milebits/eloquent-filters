@@ -6,13 +6,13 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 
 /**
- * Trait HandlesKeys
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait HandlesKeys.
  */
 trait HandlesKeys
 {
     /**
      * @param array|null $attributes
+     *
      * @return array|null
      */
     public function keys(array $attributes = null): ?array
@@ -24,13 +24,16 @@ trait HandlesKeys
 
     /**
      * @param string|null $attribute
+     *
      * @return string|null
      */
     public function key(string $attribute = null): ?string
     {
         $str = Str::of($this->defaultKey ? $this->defaultKey : $this->guessKeyName());
-        if (!is_null($attribute))
-            $str->append("_", $attribute);
+        if (!is_null($attribute)) {
+            $str->append('_', $attribute);
+        }
+
         return $str;
     }
 
@@ -45,6 +48,7 @@ trait HandlesKeys
     /**
      * @param string|null $keyAttribute
      * @param string|null $default
+     *
      * @return string|null
      */
     public function keyValue(string $keyAttribute = null, string $default = null): ?string

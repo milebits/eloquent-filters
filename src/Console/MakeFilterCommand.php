@@ -10,14 +10,14 @@ class MakeFilterCommand extends Command
 {
     protected $description = 'Create a new eloquent model filter for requests.';
     protected $signature = 'make:filter {filter}';
-    protected ?string $stub = __DIR__ . "/../../stubs/ModelFilter.php.stub";
+    protected ?string $stub = __DIR__.'/../../stubs/ModelFilter.php.stub';
 
     /**
      * MakeFilterCommand constructor.
      */
     public function __construct()
     {
-        $this->stub = $this->resolveFullyQualifiedPath($this->stub ?: __DIR__ . "/../../stubs/ModelFilter.php.stub");
+        $this->stub = $this->resolveFullyQualifiedPath($this->stub ?: __DIR__.'/../../stubs/ModelFilter.php.stub');
         parent::__construct();
     }
 
@@ -36,21 +36,23 @@ class MakeFilterCommand extends Command
         $filterName = $this->argument('filter');
 
         if (empty($filterName)) {
-            $this->error("No filter name inserted");
+            $this->error('No filter name inserted');
+
             return;
         }
 
         File::ensureDirectoryExists(app_path('Filters'));
 
-        $filterName = Str::of($filterName)->endsWith('Filter') ? $filterName : ($filterName . "Filter");
+        $filterName = Str::of($filterName)->endsWith('Filter') ? $filterName : ($filterName.'Filter');
 
         if (!$this->copyStub($filterName)) {
             $this->alert("Cannot create Filter $filterName maybe it already exists inside your Filters folder ?");
+
             return;
         }
 
         $this->info("Model filter $filterName created successfully! enjoy :)");
-        $this->info("Please consider supporting the open sourcing by doing a donation at opensource.milebits.com or os.milebits.com !");
+        $this->info('Please consider supporting the open sourcing by doing a donation at opensource.milebits.com or os.milebits.com !');
     }
 
     /**
@@ -60,12 +62,13 @@ class MakeFilterCommand extends Command
      */
     public function copyStub(string $name): bool
     {
-        if (file_exists(app_path("Filters/$name.php")))
+        if (file_exists(app_path("Filters/$name.php"))) {
             return false;
+        }
 
         $stubFile = Str::of(file_get_contents($this->stub));
 
-        File::put(app_path("Filters/$name.php"), $stubFile->replace("FilterName", $name));
+        File::put(app_path("Filters/$name.php"), $stubFile->replace('FilterName', $name));
 
         return true;
     }

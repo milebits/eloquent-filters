@@ -2,14 +2,13 @@
 
 namespace Milebits\Eloquent\Filters\Concerns;
 
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use function constVal;
 
 /**
- * Trait EmailField
+ * Trait EmailField.
  *
- * @package Milebits\Eloquent\Filters\Concerns
  * @mixin Model
  */
 trait EmailField
@@ -38,8 +37,8 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param string $email
-     * @param bool $not
+     * @param string  $email
+     * @param bool    $not
      *
      * @return Builder
      */
@@ -50,8 +49,8 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param string $email
-     * @param string $operator
+     * @param string  $email
+     * @param string  $operator
      *
      * @return Builder
      */
@@ -98,8 +97,8 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param string $email
-     * @param bool $notLike
+     * @param string  $email
+     * @param bool    $notLike
      *
      * @return Builder
      */
@@ -110,8 +109,8 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param string $email
-     * @param bool $isLike
+     * @param string  $email
+     * @param bool    $isLike
      *
      * @return Builder
      */
@@ -122,7 +121,7 @@ trait EmailField
 
     /**
      * @param Builder $builder
-     * @param bool $verified
+     * @param bool    $verified
      *
      * @return Builder
      */

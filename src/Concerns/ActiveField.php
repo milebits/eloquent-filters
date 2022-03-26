@@ -1,29 +1,29 @@
 <?php
 
-
 namespace Milebits\Eloquent\Filters\Concerns;
 
-
+use function constVal;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use function constVal;
 
 /**
- * Trait ActiveField
- * @package Milebits\Eloquent\Filters\Concerns
+ * Trait ActiveField.
+ *
  * @mixin Model
  */
 trait ActiveField
 {
     public static function bootActiveField(): void
     {
-        if (constVal(static::class, 'ACTIVE_COLUMN_ENABLED', true))
+        if (constVal(static::class, 'ACTIVE_COLUMN_ENABLED', true)) {
             static::addGlobalScope('not_active', function ($builder) {
                 return $builder->where(
-                    $builder->getModel()->decideActiveColumn($builder), '=',
+                    $builder->getModel()->decideActiveColumn($builder),
+                    '=',
                     constVal($builder->getModel(), 'ACTIVE_DEFAULT_VALUE', true)
                 );
             });
+        }
     }
 
     public function initializeActiveField(): void
@@ -36,12 +36,13 @@ trait ActiveField
      */
     public function getActiveColumn(): string
     {
-        return constVal($this, "ACTIVE_COLUMN", 'active');
+        return constVal($this, 'ACTIVE_COLUMN', 'active');
     }
 
     /**
      * @param Builder $builder
-     * @param bool $activated
+     * @param bool    $activated
+     *
      * @return Builder
      */
     public function scopeWhereActivated(Builder $builder, bool $activated = true): Builder
@@ -53,11 +54,12 @@ trait ActiveField
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function decideActiveColumn(Builder $builder): string
     {
-        return count((array)(property_exists($builder, 'joins') ? $builder->joins : [])) > 0
+        return count((array) (property_exists($builder, 'joins') ? $builder->joins : [])) > 0
             ? $this->getQualifiedActiveColumn()
             : $this->getActiveColumn();
     }
@@ -72,7 +74,8 @@ trait ActiveField
 
     /**
      * @param Builder $builder
-     * @param bool $deactivated
+     * @param bool    $deactivated
+     *
      * @return Builder
      */
     public function scopeWhereDeactivated(Builder $builder, bool $deactivated = true): Builder
@@ -88,6 +91,7 @@ trait ActiveField
     public function activate(): self
     {
         $this->{$this->getActiveColumn()} = true;
+
         return $this;
     }
 
@@ -97,6 +101,7 @@ trait ActiveField
     public function deactivate(): self
     {
         $this->{$this->getActiveColumn()} = false;
+
         return $this;
     }
 }

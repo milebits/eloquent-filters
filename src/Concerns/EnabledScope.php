@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
 /**
- * Class EnabledScope
- * @package App\Concerns
+ * Class EnabledScope.
  */
 class EnabledScope implements Scope
 {
@@ -20,8 +19,9 @@ class EnabledScope implements Scope
     ];
 
     /**
-     * @param Builder $builder
+     * @param Builder           $builder
      * @param Model|EnableField $model
+     *
      * @return Builder
      */
     public function apply(Builder $builder, Model $model): Builder
@@ -36,7 +36,8 @@ class EnabledScope implements Scope
              * @var EnableField $model
              */
             $model = $builder->getModel();
-            return $builder->where($model->getQualifiedEnabledColumn(), "=", $enabled);
+
+            return $builder->where($model->getQualifiedEnabledColumn(), '=', $enabled);
         });
     }
 
@@ -47,7 +48,8 @@ class EnabledScope implements Scope
              * @var EnableField $model
              */
             $model = $builder->getModel();
-            return $builder->withoutGlobalScope($this)->where($model->getQualifiedEnabledColumn(), "=", !$disabled);
+
+            return $builder->withoutGlobalScope($this)->where($model->getQualifiedEnabledColumn(), '=', !$disabled);
         });
     }
 }
